@@ -1,27 +1,33 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: HomeView
-  },
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
+  /* 设置路由默认路径 */
+  { path: '/', redirect: '/login' },
+  //动态加载login组件
+  { path: '/login', component: () => import('../components/login') },
+  { path: '/home', component: () => import('../components/home') },
 ]
 
 const router = new VueRouter({
-  routes
+  routes,
+})
+
+//导航守卫:token不存在不允许访问后台
+router.beforeEach((to, from, next) => {
+  //to将要访问的路径
+  //from代表从哪个路径跳转而来
+  //next是一个函数表示放行,next()放行,next('/login')强制跳转指定位置
+  /* 
+  1.如果前往登录页, 直接放行
+  2.如果token为空，则导航回登录页
+  3.除此之外，直接放行 
+  */
+  if (to.path === '/login') return next()
+  if (!sessionStorage.getItem('token')) return next('/login')
+  next()
 })
 
 export default router
