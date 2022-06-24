@@ -7,8 +7,23 @@ const routes = [
   /* 设置路由默认路径 */
   { path: '/', redirect: '/login' },
   //动态加载login组件
-  { path: '/login', component: () => import('../components/login') },
-  { path: '/home', component: () => import('../components/home') },
+  { path: '/login', component: () => import('../components/Login') },
+  {
+    path: '/home',
+    component: () => import('../components/Home'),
+    //进入home则重定向到子路由welcome组件
+    redirect: '/welcome',
+    children: [
+      {
+        path: '/welcome',
+        component: () => import('../components/Welcome'),
+      },
+      {
+        path: '/users',
+        component: () => import('../components/users/User.vue'),
+      },
+    ],
+  },
 ]
 
 const router = new VueRouter({

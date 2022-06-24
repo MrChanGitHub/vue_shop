@@ -7,6 +7,11 @@ import axios from 'axios'
 
 //配置请求的基础路径
 axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/'
+//通过axios请求拦截器添加token,保证拥有获取数据的权限
+axios.interceptors.request.use((config) => {
+  config.headers.Authorization = sessionStorage.getItem('token')
+  return config
+})
 //添加原型对象属性,全局引用
 Vue.prototype.$http = axios
 
