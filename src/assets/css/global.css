@@ -5,5 +5,10 @@ body,
   height: 100%;
   margin: 0px;
   padding: 0px;
-  min-width: 1414px;
+  min-width: 1920px;
+}
+
+/* Cate.vue 联级菜单的CSS */
+.el-cascader-menu {
+  height: 263px;
 }
