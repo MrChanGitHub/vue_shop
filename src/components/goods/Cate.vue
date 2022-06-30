@@ -370,11 +370,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.el-card {
-  margin-top: 15px;
-}
-.treeTable,
-.el-pagination {
+.treeTable {
   margin-top: 15px;
 }
 .el-cascader {

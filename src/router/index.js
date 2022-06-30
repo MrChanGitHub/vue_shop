@@ -36,7 +36,15 @@ const routes = [
       },
       {
         path: '/params',
-        component: () => import('../components/goods/params'),
+        component: () => import('../components/goods/Params'),
+      },
+      {
+        path: '/goods',
+        component: () => import('../components/goods/List'),
+      },
+      {
+        path: '/AddGoods',
+        component: () => import('../components/goods/AddGoods'),
       },
     ],
   },

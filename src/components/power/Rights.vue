@@ -59,8 +59,4 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-.el-card {
-  margin-top: 15px;
-}
-</style>
+<style scoped lang="scss"></style>

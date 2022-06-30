@@ -425,16 +425,16 @@ export default {
         },
       ).catch((err) => err)
 
-      //如果用户取消了删除,则则confirmResult返回值位字符串cancel
+      //如果用户取消了删除,则confirmResult返回值位字符串cancel
       if (confirmResult !== 'confirm') {
         return this.$message.info('取消删除')
       }
 
       //如果用户确认删除，则confirmResult返回值位字符串confirm
-      //发起网络请求，删除用户信息,更新数据,弹出提示框
-      const { data: res } = await this.$http
-        .delete(`categories/${this.cateId}/attributes/${attrId}
-`)
+      //发起网络请求,删除用户信息,更新数据,弹出提示框
+      const { data: res } = await this.$http.delete(
+        `categories/${this.cateId}/attributes/${attrId}`,
+      )
       if (res.meta.status !== 200) return this.$message.error('删除失败')
       this.getParamsData()
       this.$message.success('删除成功')
@@ -445,7 +445,7 @@ export default {
       //判断用户输入的数据是否符合基本要求
       if (row.inputValue.trim().length === 0) {
         row.inputValue = ''
-        row.inputVisible = true
+        row.inputVisible = false
         return
       }
 
@@ -511,10 +511,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.el-card,
-.el-table {
-  margin-top: 15px;
-}
 .el-tag {
   margin: 10px;
 }

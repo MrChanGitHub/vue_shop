@@ -384,10 +384,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.el-card,
-.el-table {
-  margin-top: 15px;
-}
 .el-tag {
   margin: 7px;
 }
